@@ -27,7 +27,7 @@ services:
     command: server --console-address ":9001" /data
   
   faas:
-    image: ziffer99/faas:1.0
+    image: ziffer99/faas:2.0
     container_name: faas
     links:
       - minio1
@@ -37,7 +37,7 @@ services:
       - "60000:60000"
 
   workflow-opener:
-    image: ziffer99/workflow-opener:1.0
+    image: ziffer99/workflow-opener:2.0
     container_name: workflow-opener
     links:
       - rabbitmq
@@ -47,7 +47,7 @@ services:
       - faas
   
   file-scanner:
-    image: ziffer99/file-scanner:1.0
+    image: ziffer99/file-scanner:2.0
     container_name: file-scanner
     links:
       - rabbitmq

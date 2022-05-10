@@ -24,7 +24,7 @@ spec:
         io.kompose.service: file-scanner
     spec:
       containers:
-        - image: ziffer99/file-scanner:1.0
+        - image: ziffer99/file-scanner:2.0
           name: file-scanner
           resources: {}
       restartPolicy: Always
