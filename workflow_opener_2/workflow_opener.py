@@ -9,8 +9,9 @@ MQ_KEY = 'hkust'
 MQ_SECRET = 'csit6000o'
 MQ_HOST = 'rabbitmq'
 MQ_PORT = 5672
-QUEUE = 'markdown2'
-
+QUEUE = 'markdown'
+EXCHANGE = 'amq.direct'
+ROUTING_KEY = 'markdown'
 # OpenFaaS configuration
 OF_HOST = 'faas'
 OF_PORT = '60000'
@@ -32,7 +33,10 @@ credentials = pika.PlainCredentials(MQ_KEY, MQ_SECRET)
 parameters = pika.ConnectionParameters(host=MQ_HOST, port=MQ_PORT, virtual_host='/', credentials=credentials)
 connection = pika.BlockingConnection(parameters=parameters)
 channel = connection.channel()
-channel.queue_declare(queue=QUEUE, durable=True)
+
+result = channel.queue_declare(queue=QUEUE, durable=True)
+channel.exchange_declare(exchange=EXCHANGE, durable=True, exchange_type='direct')
+channel.queue_bind(exchange=EXCHANGE, queue=result.method.queue, routing_key=ROUTING_KEY)
 channel.basic_consume(QUEUE, callback)
 
 try:

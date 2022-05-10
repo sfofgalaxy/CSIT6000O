@@ -23,6 +23,8 @@ docker run -d -p 60000:60000 --name faas --link minio1:minio1 ziffer99/faas:0.2
 docker run -d --link rabbitmq:rabbitmq --link faas:faas ziffer99/workflow-opener:0.4
 ```
 ```.bash
+kubectl apply -f aggregated.yam
+
 kubectl apply -f minio1-deployment.yaml,minio1-service.yaml,minio1-claim0-persistentvolumeclaim.yaml,rabbitmq-deployment.yaml,rabbitmq-service.yaml,faas-deployment.yaml,faas-service.yaml,workflow-opener-deployment.yaml,file-scanner-deployment.yaml
 
 kubectl expose service minio1 --type=NodePort --target-port=9001 --name=minio1-np
