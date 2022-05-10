@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.24.0 (4a2a0458)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: workflow-opener
+  name: workflow-opener
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: workflow-opener
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.24.0 (4a2a0458)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: workflow-opener
+    spec:
+      containers:
+        - image: ziffer99/workflow-opener:2.0
+          name: workflow-opener
+          resources: {}
+      restartPolicy: Always
+status: {}
