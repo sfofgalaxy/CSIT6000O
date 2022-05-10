@@ -8,6 +8,7 @@ MINIO_CONF = {
 }
 INPUT_BUCKET = 'markdown'
 
+
 # 单例模式
 class MINIO_CLIENT(object):
     _instance = None
@@ -20,11 +21,10 @@ class MINIO_CLIENT(object):
 
     def __init__(self):
         pass
-    
+
     def list_files(self):
         found = self.client.bucket_exists(INPUT_BUCKET)
         if not found:
             self.client.make_bucket(INPUT_BUCKET)
-        objects = self.client.list_objects(INPUT_BUCKET,prefix=None,recursive=True)
-
+        objects = self.client.list_objects(INPUT_BUCKET, prefix=None, recursive=True)
         return [str(obj.object_name.encode('utf-8'), "utf-8") for obj in objects]
