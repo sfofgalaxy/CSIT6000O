@@ -155,7 +155,7 @@ spec:
         io.kompose.service: faas
     spec:
       containers:
-        - image: ziffer99/faas:2.0
+        - image: ziffer99/faas:3.0
           name: faas
           ports:
             - containerPort: 60000
