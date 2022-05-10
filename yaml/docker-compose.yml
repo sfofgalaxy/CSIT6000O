@@ -27,7 +27,7 @@ services:
     command: server --console-address ":9001" /data
   
   faas:
-    image: ziffer99/faas:2.0
+    image: ziffer99/faas:3.0
     container_name: faas
     links:
       - minio1
