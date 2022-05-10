@@ -10,7 +10,7 @@ MQ_HOST = 'rabbitmq'
 MQ_PORT = 5672
 QUEUE = 'markdown'
 credentials = pika.PlainCredentials(MQ_KEY, MQ_SECRET)
-parameters = pika.ConnectionParameters(host=MQ_HOST, port=MQ_PORT, virtual_host='/', credentials=credentials)
+parameters = pika.ConnectionParameters(host=MQ_HOST, port=MQ_PORT, virtual_host='/', credentials=credentials, heartbeat=20)
 connection = pika.BlockingConnection(parameters=parameters)
 channel = connection.channel()
 channel.queue_declare(queue=QUEUE, durable=True)
