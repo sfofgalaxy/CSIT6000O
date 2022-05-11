@@ -50,7 +50,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./workflow_opener_2
-          file: ./Dockerfile
+          file: ./workflow_opener_2/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           tags: colonelaureliano/workflow-opener:2.0
@@ -59,7 +59,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./faas
-          file: ./Dockerfile
+          file: ./faas/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           tags: colonelaureliano/faas:3.0    
