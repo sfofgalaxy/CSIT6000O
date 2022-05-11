@@ -1,12 +1,13 @@
 import minio
 
 MINIO_CONF = {
-    'endpoint': 'minio1:9000',
-    'access_key': 'hkust',
-    'secret_key': 'csit6000o',
-    'secure': False
+    "endpoint": "minio1:9000",
+    "access_key": "hkust",
+    "secret_key": "csit6000o",
+    "secure": False,
 }
-INPUT_BUCKET = 'markdown'
+INPUT_BUCKET = "markdown"
+
 
 # 单例模式
 class MINIO_CLIENT(object):
