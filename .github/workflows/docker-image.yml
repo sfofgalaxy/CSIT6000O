@@ -5,6 +5,7 @@ name: CI
 on:
   # 任意推送都会触发构建
   push:
+    branches: [ master ]
 
   # Allows you to run this workflow manually from the Actions tab
 # 可以手动触发
@@ -51,9 +52,7 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64/v8,alpine
           push: ${{ github.event_name != 'pull_request' }}
-          tags: |
-            user/app:2.0
-            user/app:${{ steps.date.outputs.today }}  
+          tags: ziffer99/workflow-opener:2.0
       -
         name: Build and push
         uses: docker/build-push-action@v2
@@ -62,6 +61,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64/v8,alpine
           push: ${{ github.event_name != 'pull_request' }}
-          tags: |
-            user/app:3.0
-            user/app:${{ steps.date.outputs.today }}    
+          tags: ziffer99/faas:3.0    
