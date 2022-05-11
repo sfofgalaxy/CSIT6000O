@@ -1,35 +1,10 @@
 # CSIT6000O
 Term Project in HKUST Course of CSIT6000O: Advanced Cloud Computing
 
-# 暂时的docker起来的命令
+# Quick Start
 ```.bash
-# rabbitmq
-docker run -d -p 15672:15672  -p  5672:5672  -e RABBITMQ_DEFAULT_USER=hkust -e RABBITMQ_DEFAULT_PASS=csit6000o --name rabbitmq --hostname=rabbitmqhost  rabbitmq:3-management
-
-# minio
-docker run \
-  -p 9000:9000 \
-  -p 9001:9001 \
-  --name minio1 \
-  -v ~/minio/data:/data \
-  -e "MINIO_ROOT_USER=hkust" \
-  -e "MINIO_ROOT_PASSWORD=csit6000o" \
-  -d quay.io/minio/minio server /data --console-address ":9001"
-
-# faas
-docker run -d -p 60000:60000 --name faas --link minio1:minio1 ziffer99/faas:0.2
-
-# workflow-opener
-docker run -d --link rabbitmq:rabbitmq --link faas:faas ziffer99/workflow-opener:0.4
-```
-```.bash
-kubectl apply -f aggregated.yam
-
-kubectl apply -f minio1-deployment.yaml,minio1-service.yaml,minio1-claim0-persistentvolumeclaim.yaml,rabbitmq-deployment.yaml,rabbitmq-service.yaml,faas-deployment.yaml,faas-service.yaml,workflow-opener-deployment.yaml,file-scanner-deployment.yaml
-
-kubectl expose service minio1 --type=NodePort --target-port=9001 --name=minio1-np
-
-kubectl expose service rabbitmq --type=NodePort --target-port=15672 --name=rabbitmq-np
+bash setup.sh
+bash start.sh
 ```
 
 # Serverless Reference Architecture: Real-time File Processing
