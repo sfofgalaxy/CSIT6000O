@@ -51,7 +51,7 @@ jobs:
         with:
           context: ./workflow_opener_2
           file: ./Dockerfile
-          platforms: linux/amd64,linux/arm64/v8,alpine
+          platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           tags: colonelaureliano/workflow-opener:2.0
       -
@@ -60,6 +60,6 @@ jobs:
         with:
           context: ./faas
           file: ./Dockerfile
-          platforms: linux/amd64,linux/arm64/v8,alpine
+          platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           tags: colonelaureliano/faas:3.0    
