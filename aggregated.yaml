@@ -155,7 +155,7 @@ spec:
         io.kompose.service: faas
     spec:
       containers:
-        - image: ziffer99/faas:3.0
+        - image: colonelaureliano/faas:3.0
           name: faas
           ports:
             - containerPort: 60000
@@ -265,7 +265,7 @@ spec:
         io.kompose.service: workflow-opener
     spec:
       containers:
-        - image: ziffer99/workflow-opener:2.0
+        - image: colonelaureliano/workflow-opener:2.0
           name: workflow-opener
           resources: {}
       restartPolicy: Always
