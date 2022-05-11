@@ -47,13 +47,10 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: .
-          file: ./workflow_opener_2/Dockerfile
-# 所需要的体系结构，可以在 Available platforms 步骤中获取所有的可用架构
-          platforms: linux/amd64,linux/arm64/v8
-# 镜像推送时间
+          context: ./workflow_opener_2
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64/v8,alpine
           push: ${{ github.event_name != 'pull_request' }}
-# 给清单打上多个标签
           tags: |
             user/app:2.0
             user/app:${{ steps.date.outputs.today }}  
@@ -61,8 +58,8 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: .
-          file: ./faas/Dockerfile
+          context: ./faas
+          file: ./Dockerfile
           platforms: linux/amd64,linux/arm64/v8,alpine
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
