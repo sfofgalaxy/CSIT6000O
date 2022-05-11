@@ -43,8 +43,8 @@ jobs:
         name: Login to DockerHub
         uses: docker/login-action@v1
         with:
-          username: ziffer99
-          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+          username: colonelaureliano
+          password: 08b23186-04d3-4f7e-b325-b3b808073505
       -
         name: Build and push
         uses: docker/build-push-action@v2
@@ -53,7 +53,7 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64/v8,alpine
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ziffer99/workflow-opener:2.0
+          tags: colonelaureliano/workflow-opener:2.0
       -
         name: Build and push
         uses: docker/build-push-action@v2
@@ -62,4 +62,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64/v8,alpine
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ziffer99/faas:3.0    
+          tags: colonelaureliano/faas:3.0    
