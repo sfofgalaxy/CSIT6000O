@@ -15,11 +15,7 @@ sudo apt-get update && sudo apt-get install docker.io -y
 
 sudo apt-get install -y conntrack
 
-curl -sL cli.openfaas.com | sh
-
 minikube start --kubernetes-version=v1.18.0 HTTP_PROXY=https://minikube.sigs.k8s.io/docs/reference/networking/proxy/ --extra-config=apiserver.service-node-port-range=6000-32767 disk=20000MB --vm=true --driver=none
-
-kubectl apply -f https://raw.githubusercontent.com/openfaas/faas-netes/master/namespaces.yml
 
 #helm
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
@@ -29,24 +25,6 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 
 
-#openfaas
-helm repo add openfaas https://openfaas.github.io/faas-netes/
-
-helm upgrade openfaas --install openfaas/openfaas --namespace openfaas --set functionNamespace=openfaas-fn --set basic_auth=true
 
 
 
-#export PASSWORD=admin123
-#kubectl -n openfaas create secret generic basic-auth --from-literal=basic-auth-user=admin --from-literal=basic-auth-password="$PASSWORD"
-
-#export OPENFAAS_URL=127.0.0.1:31112
-#faas-cli login --password admin123 #第一次会失败 再运行一次就可以了
-
-#export OPENFAAS_URL=127.0.0.1:31112
-#faas-cli login --password admin123
-
-#faas-cli store deploy sentimentanalysis
-
-# kubectl delete secret $KEYNAME -n XXXX
-
-#
